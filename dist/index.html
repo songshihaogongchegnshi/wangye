@@ -188,7 +188,7 @@
           hint.textContent = '这份安慰一直在这里';
           return;
         }
-        step.classList.remove('active');
+        steps[index].classList.remove('active');
         current += 1;
         steps[current].classList.add('active');
         storyTitle.textContent = titles[current];
