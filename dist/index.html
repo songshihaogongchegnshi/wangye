@@ -18,9 +18,15 @@
     .step.active { display:block; }
     .comfort-btn { min-width:190px; }
     .final-message { margin:20px auto 4px; padding:20px 14px; border-radius:20px; background:#fff7df; color:#8d5d3a; font-size:18px; line-height:1.9; font-weight:700; }
-    .gift-row { display:flex; justify-content:center; gap:18px; margin:16px 0 8px; font-size:42px; }
-    .gift-item { display:inline-block; animation:float 2.4s ease-in-out infinite; }
-    .gift-item:nth-child(2){ animation-delay:.25s; } .gift-item:nth-child(3){ animation-delay:.5s; }
+    .gift-row { display:flex; justify-content:center; align-items:center; gap:20px; margin:16px 0 8px; min-height:108px; }
+    .flower-art { width:76px; height:76px; filter:drop-shadow(0 0 12px rgba(255,52,132,.7)); animation:flowerGlow 1.8s ease-in-out infinite; }
+    .firework-art { width:84px; height:84px; position:relative; filter:drop-shadow(0 0 10px rgba(255,190,45,.8)); }
+    .firework-art i { position:absolute; left:40px; top:6px; width:4px; height:38px; border-radius:99px; transform-origin:50% 36px; background:linear-gradient(#fff,#ffdb45 45%,#ff5d9d); animation:burst 1.45s ease-out infinite; }
+    .firework-art i:nth-child(1){transform:rotate(0deg)} .firework-art i:nth-child(2){transform:rotate(45deg);animation-delay:.08s} .firework-art i:nth-child(3){transform:rotate(90deg);animation-delay:.16s} .firework-art i:nth-child(4){transform:rotate(135deg);animation-delay:.24s} .firework-art i:nth-child(5){transform:rotate(180deg);animation-delay:.32s} .firework-art i:nth-child(6){transform:rotate(225deg);animation-delay:.4s} .firework-art i:nth-child(7){transform:rotate(270deg);animation-delay:.48s} .firework-art i:nth-child(8){transform:rotate(315deg);animation-delay:.56s}
+    .firework-core { position:absolute; left:34px; top:34px; width:16px; height:16px; border-radius:50%; background:#fff7a8; box-shadow:0 0 16px 6px #ffd35c; animation:core .8s ease-in-out infinite alternate; }
+    .gift-art { width:76px; height:62px; position:relative; margin-top:22px; border-radius:8px; background:linear-gradient(135deg,#ff4c8b,#d92b72); box-shadow:0 12px 18px rgba(180,33,93,.28), inset 0 2px 0 rgba(255,255,255,.35); animation:giftBounce 1.8s ease-in-out infinite; }
+    .gift-art::before { content:""; position:absolute; left:31px; top:0; width:13px; height:62px; background:linear-gradient(90deg,#ffd35e,#fff0a2,#f9a928); }
+    .gift-art::after { content:""; position:absolute; left:28px; top:-16px; width:18px; height:22px; border:7px solid #ffd35e; border-radius:50% 50% 10% 50%; transform:rotate(-28deg); box-shadow:18px 0 0 -2px #ffd35e; }
     .prompt { color:#b75a7a; font-size:16px; font-weight:700; line-height:1.7; margin:8px auto 18px; }
     .sparkles { font-size:24px; letter-spacing:12px; color:var(--gold); margin-bottom:8px; }
     .bear { font-size:72px; line-height:1; margin:4px 0 18px; filter:drop-shadow(0 7px 4px rgba(193,78,115,.16)); }
@@ -38,6 +44,10 @@
     @keyframes float { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-16px) rotate(10deg)} }
     @keyframes pop { 0%{opacity:0; transform:translateY(20px) scale(.7)} 70%{opacity:1; transform:translateY(-5px) scale(1.06)} 100%{opacity:1; transform:translateY(0) scale(1)} }
     @keyframes hint { 0%,100%{opacity:.55} 50%{opacity:1} }
+    @keyframes burst { 0%{opacity:0; transform:rotate(var(--angle)) scaleY(.2)} 22%{opacity:1} 68%{opacity:1; transform:rotate(var(--angle)) scaleY(1)} 100%{opacity:0; transform:rotate(var(--angle)) scaleY(1.22)} }
+    @keyframes core { from{transform:scale(.8);opacity:.7} to{transform:scale(1.25);opacity:1} }
+    @keyframes flowerGlow { 50%{transform:scale(1.08) rotate(4deg)} }
+    @keyframes giftBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
   </style>
 </head>
 <body>
@@ -50,7 +60,7 @@
       <div class="step active"><p class="prompt">朱朱小朋友愿意告诉宋宋吗？</p><button class="comfort-btn">是，我有一点难过</button></div>
       <div class="step"><div class="bear">🫂</div><p class="prompt">不要难过哦，宋宋来安慰你。</p><button class="comfort-btn">收到拥抱啦</button></div>
       <div class="step"><p class="prompt">朱朱小朋友，请领取安慰礼物。</p><button class="comfort-btn">请朱朱小朋友领取安慰礼物</button></div>
-      <div class="step"><div class="gift-row"><span class="gift-item">🌷</span><span class="gift-item">🎆</span><span class="gift-item">🎁</span></div><p class="prompt">花、烟花和礼物，都送给今天需要被安慰的朱朱。</p><button class="comfort-btn">打开安慰礼物</button></div>
+      <div class="step"><div class="gift-row"><svg class="flower-art" viewBox="0 0 100 100" aria-label="鲜艳的花"><defs><linearGradient id="petal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff2f8a"/><stop offset=".55" stop-color="#ff5a40"/><stop offset="1" stop-color="#ffbf38"/></linearGradient></defs><g fill="url(#petal)"><ellipse cx="50" cy="26" rx="15" ry="28"/><ellipse cx="74" cy="40" rx="15" ry="28" transform="rotate(58 74 40)"/><ellipse cx="68" cy="69" rx="15" ry="28" transform="rotate(122 68 69)"/><ellipse cx="32" cy="69" rx="15" ry="28" transform="rotate(-122 32 69)"/><ellipse cx="26" cy="40" rx="15" ry="28" transform="rotate(-58 26 40)"/></g><circle cx="50" cy="50" r="13" fill="#ffe66d"/><circle cx="50" cy="50" r="6" fill="#ff8b22"/></svg><div class="firework-art" aria-label="正在绽放的烟花"><i style="--angle:0deg"></i><i style="--angle:45deg"></i><i style="--angle:90deg"></i><i style="--angle:135deg"></i><i style="--angle:180deg"></i><i style="--angle:225deg"></i><i style="--angle:270deg"></i><i style="--angle:315deg"></i><b class="firework-core"></b></div><div class="gift-art" aria-label="安慰礼物"></div></div><p class="prompt">鲜花、烟花和礼物，都送给今天需要被安慰的朱朱。</p><button class="comfort-btn">打开安慰礼物</button></div>
       <div class="step"><div class="bear">🧸</div><div class="final-message">不要难过哦，朱朱小朋友。<br>不开心的事情会慢慢过去，<br>宋宋希望你今天可以轻松一点、开心一点。🌷</div></div>
       <div class="tap-hint" id="hint">点击“是”，安慰就开始啦</div>
       <div class="footer">宋宋的一点点关心 · ✦</div>
