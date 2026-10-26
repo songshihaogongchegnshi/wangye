@@ -166,6 +166,7 @@
     .card.final-mode .reply-prompt { margin-top:10px; padding:8px 12px; font-size:13px; line-height:1.45; }
     .card.final-mode .copy-reply { margin-top:8px; padding:6px 12px; }
     .side-decor { position:absolute; top:50%; width:180px; height:190px; z-index:2; opacity:0; pointer-events:none; transform:translateY(-35%); transition:opacity .35s ease; }
+    .card:not(.final-mode) ~ .side-decor { opacity:.38; }
     .card.final-mode ~ .side-decor { opacity:1; }
     .side-left { left:7%; }
     .side-right { right:7%; }
@@ -178,6 +179,26 @@
     .decor-heart { position:absolute; right:38px; top:44px; width:18px; height:18px; background:#e775a2; box-shadow:18px 0 0 #e775a2,9px 9px 0 #e775a2,9px 18px 0 #e775a2; transform:rotate(45deg); }
     .decor-heart::after { content:""; position:absolute; left:-20px; top:72px; width:8px; height:8px; background:#ffd86d; box-shadow:30px 18px 0 #9a7bb0,54px -12px 0 #8ab587; }
     .decor-star { position:absolute; right:64px; top:116px; color:#ffd86d; font-size:38px; text-shadow:4px 4px 0 #684d70; }
+    /* Desktop scene framing: each page gets its own quiet pixel details so the wide stage feels intentional. */
+    .step { position:relative; isolation:isolate; }
+    .step:not(:has(.celebration-stage)):not(:has(.final-message))::before,
+    .step:not(:has(.celebration-stage)):not(:has(.final-message))::after { position:absolute; z-index:-1; pointer-events:none; color:#80628b; font-size:12px; letter-spacing:2px; opacity:.72; }
+    .step:nth-of-type(4)::before { content:"✦ 01 / CHECK-IN"; left:2%; top:16%; padding:8px 10px; border:2px solid #9f7ca1; background:#fff4f0aa; box-shadow:4px 4px 0 #c8a9c5; }
+    .step:nth-of-type(4)::after { content:"CARE +999  ·  YOU ARE SAFE"; right:2%; bottom:18%; padding:8px 10px; color:#9b607e; border-bottom:2px solid #d99ab2; border-top:2px solid #d99ab2; }
+    .step:nth-of-type(5)::before { content:"╭──────╮  ✦\A│  hug!  │\A╰──────╯"; white-space:pre; left:2%; top:19%; padding:9px 12px; color:#8e5b75; line-height:1.65; background:#fff1d8; border:3px solid #80628b; box-shadow:5px 5px 0 #80628b; }
+    .step:nth-of-type(5)::after { content:"先接住这一点温柔"; right:2%; bottom:20%; padding:10px 12px; color:#c55f8d; border:2px dashed #c98a9d; background:#fff8fb99; transform:rotate(2deg); }
+    .step:nth-of-type(6)::before { content:"✧ LITTLE GIFT ✧"; left:3%; top:17%; padding:9px 12px; color:#946a35; background:#fff1bd; border:2px solid #684d70; box-shadow:4px 4px 0 #684d70; transform:rotate(-3deg); }
+    .step:nth-of-type(6)::after { content:"OPEN  →  LIGHTNESS"; right:2%; bottom:19%; padding:9px 12px; color:#7c5d83; border:2px solid #9a7bb0; box-shadow:4px 4px 0 #c5b0ce; transform:rotate(3deg); }
+    .step:nth-of-type(7)::before { content:"✦  ✧  ✦  ✧  ✦"; position:absolute; left:4%; top:12%; color:#ffd86d; font-size:18px; letter-spacing:10px; opacity:.9; pointer-events:none; }
+    .step:nth-of-type(7)::after { content:"花花已送达  ·  烟火正在盛开"; position:absolute; right:4%; bottom:16%; padding:9px 12px; color:#8c5e88; border-top:2px solid #d99ab2; border-bottom:2px solid #d99ab2; opacity:.85; pointer-events:none; }
+    .step:nth-of-type(8)::before { content:"FROM SONGSONG  ♥  FOR ZHUZHU"; position:absolute; left:3%; top:17%; padding:9px 12px; color:#9b607e; border:2px solid #d99ab2; background:#fff4f0aa; transform:rotate(-2deg); pointer-events:none; }
+    .step:nth-of-type(8)::after { content:"REPLY RECEIVED?  ✓"; position:absolute; right:3%; bottom:18%; padding:9px 12px; color:#946a35; background:#fff1bd; border:2px solid #684d70; box-shadow:4px 4px 0 #684d70; transform:rotate(2deg); pointer-events:none; }
+    @media (max-width:899px) {
+      .step:not(:has(.celebration-stage)):not(:has(.final-message))::before,
+      .step:not(:has(.celebration-stage)):not(:has(.final-message))::after,
+      .step:nth-of-type(4)::before, .step:nth-of-type(4)::after,
+      .step:nth-of-type(5)::before, .step:nth-of-type(5)::after { display:none; }
+    }
     @media (max-width:699px) { .side-decor { display:none; } }
     @keyframes pixelFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
     @keyframes pixelRing { from{opacity:1;transform:scale(.72)} to{opacity:0;transform:scale(1.2)} }
