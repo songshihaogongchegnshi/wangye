@@ -12,8 +12,10 @@
     .wrap { min-height:100vh; display:grid; place-items:center; padding:24px; position:relative; }
     .glow { position:absolute; width:320px; height:320px; border-radius:50%; background:#ffd4e4; filter:blur(46px); opacity:.7; }
     .card { width:min(100%,420px); padding:38px 26px 30px; border:2px solid rgba(255,111,159,.28); border-radius:32px; text-align:center; background:rgba(255,255,255,.74); box-shadow:0 20px 60px rgba(183,71,117,.18); backdrop-filter:blur(10px); position:relative; z-index:1; }
+    .reveal { opacity:0; transform:translateY(20px) scale(.7); pointer-events:none; }
+    .reveal.show { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; animation:pop .6s cubic-bezier(.2,1.5,.4,1) both; }
     .sparkles { font-size:24px; letter-spacing:12px; color:var(--gold); margin-bottom:8px; }
-    .bear { font-size:72px; line-height:1; margin:4px 0 18px; filter:drop-shadow(0 7px 4px rgba(193,78,115,.16)); animation:bob 2.5s ease-in-out infinite; }
+    .bear { font-size:72px; line-height:1; margin:4px 0 18px; filter:drop-shadow(0 7px 4px rgba(193,78,115,.16)); }
     h1 { margin:0; font-size:34px; line-height:1.25; letter-spacing:1px; color:var(--pink); text-shadow:2px 2px 0 #fff; }
     .sub { margin:16px 0 4px; font-size:18px; font-weight:700; }
     .note { margin:0 auto 24px; max-width:300px; line-height:1.8; font-size:15px; color:#9a5c78; }
@@ -21,10 +23,13 @@
     button { border:0; margin-top:18px; padding:13px 28px; border-radius:999px; color:#fff; background:linear-gradient(135deg,#ff75a4,#ff9e87); font-size:16px; font-weight:800; box-shadow:0 8px 18px rgba(255,111,159,.3); cursor:pointer; }
     button:active { transform:scale(.97); }
     .footer { margin-top:20px; color:#c38a9e; font-size:12px; }
+    .tap-hint { margin-top:18px; color:#d87999; font-size:13px; font-weight:700; animation:hint 1.8s ease-in-out infinite; }
     .heart { position:absolute; animation:float 5s ease-in-out infinite; opacity:.72; }
     .h1 { left:7%; top:13%; font-size:25px; } .h2 { right:8%; bottom:15%; font-size:22px; animation-delay:1.4s; } .h3 { left:14%; bottom:23%; font-size:16px; animation-delay:2.2s; }
     @keyframes bob { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-8px) rotate(2deg)} }
     @keyframes float { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-16px) rotate(10deg)} }
+    @keyframes pop { 0%{opacity:0; transform:translateY(20px) scale(.7)} 70%{opacity:1; transform:translateY(-5px) scale(1.06)} 100%{opacity:1; transform:translateY(0) scale(1)} }
+    @keyframes hint { 0%,100%{opacity:.55} 50%{opacity:1} }
   </style>
 </head>
 <body>
@@ -32,14 +37,28 @@
     <div class="glow"></div><div class="heart h1">💗</div><div class="heart h2">💞</div><div class="heart h3">✨</div>
     <section class="card" aria-label="给朱朱的道歉信">
       <div class="sparkles">✦ ˚｡⋆</div>
-      <div class="bear">🧸🌷</div>
+      <div class="bear reveal">🧸🌷</div>
       <h1>朱朱不要生气啦</h1>
-      <p class="sub">今天受委屈了吧，来给你一个抱抱～</p>
-      <p class="note">别难过啦，朱朱的心情我懂，<br>不开心的事情先放一放，我陪着你慢慢消化。<br>你值得被温柔对待，也值得一直开心呀 🌷</p>
-      <span class="pill">抱抱你</span><span class="pill">陪着你</span><span class="pill">慢慢开心</span>
-      <br><button onclick="this.textContent='把坏心情交给我吧 🫂'; this.style.background='linear-gradient(135deg,#f4a261,#ffcf70)'">点这里收下抱抱</button>
-      <div class="footer">永远站在朱朱这边 · ♥</div>
+      <p class="sub reveal">今天受委屈了吧，来给你一个抱抱～</p>
+      <p class="note reveal">别难过啦，朱朱的心情我懂，<br>不开心的事情先放一放，我陪着你慢慢消化。<br>你值得被温柔对待，也值得一直开心呀 🌷</p>
+      <div class="reveal"><span class="pill">抱抱你</span><span class="pill">陪着你</span><span class="pill">慢慢开心</span></div>
+      <div class="reveal"><button onclick="this.textContent='把坏心情交给我吧 🫂'; this.style.background='linear-gradient(135deg,#f4a261,#ffcf70)'">点这里收下抱抱</button></div>
+      <div class="footer reveal">永远站在朱朱这边 · ♥</div>
+      <div class="tap-hint" id="hint">点击一下，给朱朱一个抱抱</div>
     </section>
   </main>
+  <script>
+    const revealItems = [...document.querySelectorAll('.reveal')];
+    const hint = document.getElementById('hint');
+    let next = 0;
+    document.addEventListener('click', (event) => {
+      if (event.target.closest('button')) return;
+      if (next < revealItems.length) {
+        revealItems[next].classList.add('show');
+        next += 1;
+        hint.textContent = next < revealItems.length ? '再点一下，朱朱会收到更多安慰～' : '都出现啦，点击按钮收下抱抱 🫂';
+      }
+    });
+  </script>
 </body>
 </html>
