@@ -11,7 +11,15 @@
     body { margin:0; min-height:100vh; overflow:hidden; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; color:var(--deep); background:radial-gradient(circle at 20% 10%, #fff 0 13%, transparent 14%), linear-gradient(150deg,#fff8fb,#ffeaf2 48%,#fff7df); }
     .wrap { min-height:100vh; display:grid; place-items:center; padding:24px; position:relative; }
     .glow { position:absolute; width:320px; height:320px; border-radius:50%; background:#ffd4e4; filter:blur(46px); opacity:.7; }
-    .card { width:min(100%,420px); padding:38px 26px 30px; border:2px solid rgba(255,111,159,.28); border-radius:32px; text-align:center; background:rgba(255,255,255,.74); box-shadow:0 20px 60px rgba(183,71,117,.18); backdrop-filter:blur(10px); position:relative; z-index:1; }
+    .card { width:min(100%,420px); padding:32px 26px 30px; border:2px solid rgba(255,111,159,.28); border-radius:32px; text-align:center; background:rgba(255,255,255,.74); box-shadow:0 20px 60px rgba(183,71,117,.18); backdrop-filter:blur(10px); position:relative; z-index:1; }
+    .card::before { content:""; position:absolute; inset:8px; border:1px solid rgba(255,184,70,.2); border-radius:25px; pointer-events:none; }
+    .badge { display:inline-flex; align-items:center; gap:7px; padding:7px 13px; border-radius:999px; background:linear-gradient(135deg,#fff1b9,#fff8df); color:#b77b2b; font-size:12px; font-weight:800; letter-spacing:1px; box-shadow:0 5px 14px rgba(255,185,70,.14); }
+    .badge::before { content:"✦"; color:#ff9e43; font-size:15px; }
+    .progress { display:flex; align-items:center; justify-content:center; gap:0; margin:18px auto 20px; width:min(100%,285px); }
+    .progress-line { height:2px; flex:1; background:#f4dbe4; }
+    .progress-dot { width:22px; height:22px; display:grid; place-items:center; border-radius:50%; background:#fff; border:2px solid #f3cbd8; color:#d59bad; font-size:11px; font-weight:800; transition:.35s; }
+    .progress-dot.active { color:#fff; border-color:#ff7da8; background:linear-gradient(135deg,#ff70a0,#ff9d79); box-shadow:0 0 0 5px rgba(255,111,159,.12); transform:scale(1.08); }
+    .mini-note { margin:-3px auto 17px; color:#c27c95; font-size:12px; letter-spacing:.5px; }
     .reveal { opacity:0; transform:translateY(20px) scale(.7); pointer-events:none; }
     .reveal.show { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; animation:pop .6s cubic-bezier(.2,1.5,.4,1) both; }
     .step { display:none; animation:pop .6s cubic-bezier(.2,1.5,.4,1) both; }
@@ -39,7 +47,7 @@
     .footer { margin-top:20px; color:#c38a9e; font-size:12px; }
     .tap-hint { margin-top:18px; color:#d87999; font-size:13px; font-weight:700; animation:hint 1.8s ease-in-out infinite; }
     .heart { position:absolute; animation:float 5s ease-in-out infinite; opacity:.72; }
-    .h1 { left:7%; top:13%; font-size:25px; } .h2 { right:8%; bottom:15%; font-size:22px; animation-delay:1.4s; } .h3 { left:14%; bottom:23%; font-size:16px; animation-delay:2.2s; }
+    .h1 { left:7%; top:13%; font-size:25px; } .h2 { right:8%; bottom:15%; font-size:22px; animation-delay:1.4s; } .h3 { left:14%; bottom:23%; font-size:16px; animation-delay:2.2s; } .h4 { right:18%; top:19%; font-size:14px; animation-delay:3s; color:#ffb946; }
     @keyframes bob { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-8px) rotate(2deg)} }
     @keyframes float { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-16px) rotate(10deg)} }
     @keyframes pop { 0%{opacity:0; transform:translateY(20px) scale(.7)} 70%{opacity:1; transform:translateY(-5px) scale(1.06)} 100%{opacity:1; transform:translateY(0) scale(1)} }
@@ -52,11 +60,14 @@
 </head>
 <body>
   <main class="wrap">
-    <div class="glow"></div><div class="heart h1">🌷</div><div class="heart h2">☀️</div><div class="heart h3">✨</div>
+    <div class="glow"></div><div class="heart h1">🌷</div><div class="heart h2">☀️</div><div class="heart h3">✨</div><div class="heart h4">✦</div>
     <section class="card" aria-label="宋宋给朱奕瑄小朋友的安慰">
       <div class="sparkles">✦ ˚｡⋆</div>
+      <div class="badge">宋宋的安慰小剧场</div>
+      <div class="progress" aria-label="安慰进度"><span class="progress-dot active">1</span><span class="progress-line"></span><span class="progress-dot">2</span><span class="progress-line"></span><span class="progress-dot">3</span><span class="progress-line"></span><span class="progress-dot">4</span><span class="progress-line"></span><span class="progress-dot">5</span></div>
       <h1 id="storyTitle">朱奕瑄小朋友今天是不是难过啦？</h1>
       <p class="sub">如果难过的话，就让宋宋来安慰你一下。</p>
+      <div class="mini-note">一份慢慢打开的、不会越界的朋友式安慰</div>
       <div class="step active"><p class="prompt">朱朱小朋友愿意告诉宋宋吗？</p><button class="comfort-btn">是，我有一点难过</button></div>
       <div class="step"><div class="bear">🫂</div><p class="prompt">不要难过哦，宋宋来安慰你。</p><button class="comfort-btn">收到拥抱啦</button></div>
       <div class="step"><p class="prompt">朱朱小朋友，请领取安慰礼物。</p><button class="comfort-btn">请朱朱小朋友领取安慰礼物</button></div>
@@ -70,6 +81,7 @@
     const steps = [...document.querySelectorAll('.step')];
     const hint = document.getElementById('hint');
     const storyTitle = document.getElementById('storyTitle');
+    const progressDots = [...document.querySelectorAll('.progress-dot')];
     const titles = [
       '朱奕瑄小朋友今天是不是难过啦？',
       '没关系，宋宋来安慰你啦',
@@ -87,6 +99,7 @@
         current += 1;
         steps[current].classList.add('active');
         storyTitle.textContent = titles[current];
+        progressDots[current].classList.add('active');
         hint.textContent = ['点击“是”，安慰就开始啦','拥抱已经送到啦，点击继续','请朱朱小朋友领取安慰礼物','花、烟花和礼物都准备好了','安慰礼物送达啦 ☀️'][current];
       });
     });
