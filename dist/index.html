@@ -53,22 +53,22 @@
     @keyframes flowerGlow { 50%{transform:scale(1.08) rotate(4deg)} }
     @keyframes giftBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
     .celebration-stage { position:relative; min-height:260px; margin:8px -54px 0; display:grid; place-items:center; overflow:visible; }
-    .bouquet { position:relative; z-index:2; width:150px; height:190px; margin-top:16px; animation:bouquetRise .9s cubic-bezier(.2,1.4,.4,1) both; }
+    .bouquet { position:relative; z-index:30; width:150px; height:190px; margin-top:16px; animation:bouquetRise .9s cubic-bezier(.2,1.4,.4,1) both; }
     .bouquet::before { content:""; position:absolute; left:72px; bottom:0; width:7px; height:118px; border-radius:99px; background:#79a77d; transform:rotate(2deg); box-shadow:-35px 16px 0 -2px #8ab587, 34px 22px 0 -2px #6e9e76; }
     .flower-head { position:absolute; width:58px; height:58px; border-radius:50%; background:radial-gradient(circle at 50% 50%,#ffd86f 0 12%,transparent 13%),radial-gradient(circle at 50% 17%,#ef718d 0 22%,transparent 23%),radial-gradient(circle at 83% 38%,#f2879a 0 22%,transparent 23%),radial-gradient(circle at 68% 82%,#e85f86 0 22%,transparent 23%),radial-gradient(circle at 32% 82%,#ef718d 0 22%,transparent 23%),radial-gradient(circle at 17% 38%,#f2879a 0 22%,transparent 23%); filter:drop-shadow(0 8px 10px rgba(190,82,108,.18)); }
     .flower-head::after { content:""; position:absolute; left:10px; bottom:-48px; width:38px; height:24px; border-bottom:8px solid #79a77d; border-radius:50%; transform:rotate(-24deg); }
     .flower-main { left:46px; top:8px; transform:scale(1.2); }
     .flower-left { left:2px; top:52px; transform:scale(.78) rotate(-12deg); }
     .flower-right { right:2px; top:58px; transform:scale(.82) rotate(12deg); }
-    .screen-fireworks { position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
-    .firework-burst { position:absolute; width:10px; height:10px; left:var(--x); top:var(--y); animation:burstIn 1.4s ease-out both; animation-delay:var(--delay); }
-    .firework-burst span { position:absolute; left:4px; top:4px; width:3px; height:var(--len,70px); border-radius:99px; transform-origin:50% 0; background:linear-gradient(#fff9d0,#ffd45c 35%,#f26c93); box-shadow:0 0 8px #ffd45c; animation:sparkFly 1.5s cubic-bezier(.2,.8,.2,1) both; animation-delay:var(--delay); }
-    .firework-burst span:nth-child(1){transform:rotate(0deg)} .firework-burst span:nth-child(2){transform:rotate(30deg)} .firework-burst span:nth-child(3){transform:rotate(60deg)} .firework-burst span:nth-child(4){transform:rotate(90deg)} .firework-burst span:nth-child(5){transform:rotate(120deg)} .firework-burst span:nth-child(6){transform:rotate(150deg)} .firework-burst span:nth-child(7){transform:rotate(180deg)} .firework-burst span:nth-child(8){transform:rotate(210deg)} .firework-burst span:nth-child(9){transform:rotate(240deg)} .firework-burst span:nth-child(10){transform:rotate(270deg)} .firework-burst span:nth-child(11){transform:rotate(300deg)} .firework-burst span:nth-child(12){transform:rotate(330deg)}
+    .screen-fireworks { position:fixed; inset:0; z-index:20; pointer-events:none; overflow:hidden; background:radial-gradient(circle at 50% 45%,rgba(255,235,190,.18),transparent 42%); }
+    .firework-burst { position:absolute; width:14px; height:14px; left:var(--x); top:var(--y); animation:burstIn 2.8s ease-out both; animation-delay:var(--delay); }
+    .firework-burst span { position:absolute; left:6px; top:6px; width:4px; height:var(--len,100px); border-radius:99px; transform-origin:50% 0; background:linear-gradient(#fff,#ffe275 30%,#ff719b 82%,transparent); box-shadow:0 0 12px #ffd45c,0 0 22px rgba(255,103,147,.6); animation:sparkFly 2.6s cubic-bezier(.2,.8,.2,1) both; animation-delay:var(--delay); }
+    .firework-burst span:nth-child(1){--angle:0deg} .firework-burst span:nth-child(2){--angle:30deg} .firework-burst span:nth-child(3){--angle:60deg} .firework-burst span:nth-child(4){--angle:90deg} .firework-burst span:nth-child(5){--angle:120deg} .firework-burst span:nth-child(6){--angle:150deg} .firework-burst span:nth-child(7){--angle:180deg} .firework-burst span:nth-child(8){--angle:210deg} .firework-burst span:nth-child(9){--angle:240deg} .firework-burst span:nth-child(10){--angle:270deg} .firework-burst span:nth-child(11){--angle:300deg} .firework-burst span:nth-child(12){--angle:330deg}
     .firework-burst::after { content:""; position:absolute; inset:1px; border-radius:50%; background:#fff5a5; box-shadow:0 0 20px 8px #ffd45c; animation:coreFlash .7s ease-out both; animation-delay:var(--delay); }
     .fw1{--x:14%;--y:23%;--delay:.05s;--len:70px}.fw2{--x:83%;--y:20%;--delay:.22s;--len:82px}.fw3{--x:28%;--y:69%;--delay:.38s;--len:58px}.fw4{--x:72%;--y:64%;--delay:.5s;--len:66px}.fw5{--x:50%;--y:12%;--delay:.64s;--len:52px}.fw6{--x:92%;--y:52%;--delay:.78s;--len:44px}.fw7{--x:7%;--y:48%;--delay:.9s;--len:45px}
     @keyframes bouquetRise { from{opacity:0;transform:translateY(34px) scale(.7)} to{opacity:1;transform:translateY(0) scale(1)} }
-    @keyframes burstIn { from{opacity:0;transform:scale(.1)} 15%{opacity:1} to{opacity:.82;transform:scale(1)} }
-    @keyframes sparkFly { 0%{opacity:0;transform:rotate(0deg) scaleY(.08)} 22%{opacity:1} 100%{opacity:0;transform:rotate(var(--angle,0deg)) scaleY(1)} }
+    @keyframes burstIn { from{opacity:0;transform:scale(.1)} 12%{opacity:1} 72%{opacity:.9} to{opacity:0;transform:scale(1.12)} }
+    @keyframes sparkFly { 0%{opacity:0;transform:rotate(var(--angle)) scaleY(.06)} 18%{opacity:1} 72%{opacity:.95} 100%{opacity:0;transform:rotate(var(--angle)) scaleY(1.12)} }
     @keyframes coreFlash { 0%{opacity:0;transform:scale(.2)} 30%{opacity:1} 100%{opacity:0;transform:scale(2.2)} }
     @media (prefers-reduced-motion: reduce) { .screen-fireworks *, .bouquet { animation-duration:1ms !important; animation-iteration-count:1 !important; } }
     /* Refined visual system: fewer effects, clearer hierarchy, roomier desktop composition. */
@@ -111,7 +111,6 @@
     <div class="glow"></div><svg class="backdrop-art" viewBox="0 0 980 520" aria-hidden="true"><circle cx="490" cy="260" r="190" fill="#fff4e9"/><path d="M140 390c70-90 125-92 178 0M662 390c52-92 114-92 178 0" fill="none" stroke="#e9b5b5" stroke-width="3" stroke-linecap="round"/><path d="M210 115l9 22 24 2-18 15 6 23-21-12-21 12 6-23-18-15 24-2zM760 98l7 17 19 2-14 12 4 18-16-9-16 9 5-18-15-12 19-2z" fill="#f0c36e"/><circle cx="318" cy="110" r="7" fill="#e882a3"/><circle cx="672" cy="150" r="5" fill="#e882a3"/></svg><div class="heart h1">✦</div><div class="heart h2">○</div><div class="heart h3">·</div><div class="heart h4">✧</div>
     <section class="card" aria-label="宋宋给朱奕瑄的安慰">
       <div class="sparkles">✦ ˚｡⋆</div>
-      <div class="badge">宋宋的安慰小剧场</div>
       <h1 id="storyTitle">朱奕瑄，今天是不是有一点难过？</h1>
       <p class="sub">如果难过，就先留在这里一会儿。</p>
       <div class="mini-note">不着急开心，先让自己被好好安慰。</div>
@@ -130,7 +129,7 @@
     const storyTitle = document.getElementById('storyTitle');
     const titles = [
       '朱奕瑄，今天是不是有一点难过？',
-      '我在这里，先陪你缓一缓',
+      '宋宋先陪你缓一缓',
       '朱朱，给你准备了一份小礼物',
       '花、烟花，还有一份小小心意',
       '朱朱，今天也要对自己温柔一点'
