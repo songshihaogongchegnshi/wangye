@@ -288,18 +288,18 @@
     const soundToggle = document.getElementById('soundToggle');
     let audioContext = null;
     let musicTimer = null;
-    const notes = [392,440,523.25,440,349.23,392,440,523.25];
+    const notes = [261.63,329.63,392,329.63,293.66,349.23,440,349.23];
     function playNote(freq, when) {
       if (!audioContext) return;
       const osc = audioContext.createOscillator();
       const gain = audioContext.createGain();
-      osc.type = 'sine';
+      osc.type = 'triangle';
       osc.frequency.value = freq;
       gain.gain.setValueAtTime(0.0001, when);
-      gain.gain.exponentialRampToValueAtTime(0.028, when + 0.04);
-      gain.gain.exponentialRampToValueAtTime(0.0001, when + 0.62);
+      gain.gain.exponentialRampToValueAtTime(0.022, when + 0.06);
+      gain.gain.exponentialRampToValueAtTime(0.0001, when + 0.78);
       osc.connect(gain).connect(audioContext.destination);
-      osc.start(when); osc.stop(when + 0.65);
+      osc.start(when); osc.stop(when + 0.82);
     }
     function startMusic() {
       if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -308,7 +308,7 @@
       soundToggle.classList.add('on'); soundToggle.textContent = '♫ 已开启';
       let i = 0;
       const play = () => playNote(notes[i++ % notes.length], audioContext.currentTime);
-      play(); musicTimer = setInterval(play, 720);
+      play(); musicTimer = setInterval(play, 900);
     }
     soundToggle.addEventListener('click', () => {
       if (musicTimer) { clearInterval(musicTimer); musicTimer = null; soundToggle.classList.remove('on'); soundToggle.textContent = '♫ 音乐'; return; }
