@@ -156,7 +156,7 @@
       <div class="sparkles">✦ ˚｡⋆</div>
       <div class="stage-label" id="stageLabel">先等一下，有个非常重要的问题</div>
       <h1 id="storyTitle">朱奕瑄，今天是不是有一点难过？</h1>
-      <p class="sub" id="subMessage">如果难过，就先留在这里一会儿。</p>
+      <p class="sub" id="subMessage">先别急着把情绪藏起来。</p>
       <div class="step active"><p class="prompt">今天是不是有一点难过？</p><button type="button" class="comfort-btn">是，我想被安慰一下</button></div>
       <div class="step"><svg class="hero-icon" viewBox="0 0 100 100" aria-label="温柔的像素拥抱"><g shape-rendering="crispEdges" stroke="#684d70" stroke-width="3" stroke-linejoin="miter"><rect x="38" y="12" width="24" height="24" fill="#f2b19e"/><rect x="31" y="39" width="38" height="39" fill="#e8899f"/><rect x="37" y="75" width="10" height="10" fill="#f2b19e"/><rect x="53" y="75" width="10" height="10" fill="#f2b19e"/><rect x="42" y="21" width="4" height="4" fill="#684d70" stroke="none"/><rect x="54" y="21" width="4" height="4" fill="#684d70" stroke="none"/><rect x="47" y="29" width="7" height="3" fill="#684d70" stroke="none"/><rect x="23" y="45" width="9" height="6" fill="#d66b89"/><rect x="16" y="51" width="9" height="9" fill="#d66b89"/><rect x="23" y="60" width="9" height="7" fill="#d66b89"/><rect x="31" y="57" width="9" height="10" fill="#d66b89"/><rect x="68" y="45" width="9" height="6" fill="#d66b89"/><rect x="75" y="51" width="9" height="9" fill="#d66b89"/><rect x="68" y="60" width="9" height="7" fill="#d66b89"/><rect x="60" y="57" width="9" height="10" fill="#d66b89"/><rect x="39" y="54" width="22" height="12" fill="#f2a9ba" stroke="none"/><rect x="42" y="57" width="16" height="5" fill="#fff0da" stroke="none"/></g></svg><p class="prompt">今天辛苦啦，先收下这份拥抱。</p><button type="button" class="comfort-btn">收到这份拥抱</button></div>
       <div class="step"><p class="prompt">朱朱，给你准备了一份小礼物。<br>希望它能让你心情轻一点。</p><button type="button" class="comfort-btn">打开礼物</button></div>
@@ -172,6 +172,7 @@
     const hint = document.getElementById('hint');
     const storyTitle = document.getElementById('storyTitle');
     const subMessage = document.getElementById('subMessage');
+    const finalMessage = document.querySelector('.final-message');
     const stageLabel = document.getElementById('stageLabel');
     const progress = [...document.querySelectorAll('.pixel-progress i')];
     const titles = [
@@ -180,6 +181,13 @@
       '朱朱，给你准备了一份小礼物',
       '花、烟花，还有一份小小心意',
       '朱朱，今天也要对自己温柔一点'
+    ];
+    const promptTexts = [
+      '今天是不是有一点难过？',
+      '宋宋把一个拥抱递给你，先接住这一点温柔。',
+      '这份小礼物，想替我陪你一会儿。',
+      '花朵和烟火，正在为你亮起。',
+      '今天的辛苦，先放在这里吧。'
     ];
     let current = 0;
     function advance(index, button) {
@@ -193,6 +201,9 @@
         current += 1;
         steps[current].classList.add('active');
         subMessage.style.display = current === 0 ? '' : 'none';
+        const nextPrompt = steps[current].querySelector('.prompt');
+        if (nextPrompt) nextPrompt.textContent = promptTexts[current];
+        if (current === 4) finalMessage.innerHTML = '今天的辛苦，先放在这里吧。<br>愿你慢慢松下来，重新找回一点轻松。<br>朱朱，接下来会越来越好的。';
         storyTitle.textContent = titles[current];
         progress.forEach((item, progressIndex) => item.classList.toggle('active', progressIndex === current));
         progress.forEach((item, progressIndex) => item.classList.toggle('done', progressIndex < current));
