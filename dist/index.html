@@ -232,13 +232,13 @@
             const panel = document.createElement('div');
             panel.id = 'replyPrompt';
             panel.className = 'reply-prompt';
-            panel.innerHTML = '看完这个小礼物后，请回复宋宋一句：<br><strong>“我收到啦，谢谢你。”</strong>';
+            panel.innerHTML = '看完这个小礼物后，请回复宋宋一句：<br><strong>“小朱朱收到啦，谢谢宋宋。”</strong>';
             const copy = document.createElement('button');
             copy.type = 'button';
             copy.className = 'copy-reply';
             copy.textContent = '复制这句回复';
             copy.addEventListener('click', async () => {
-              try { await navigator.clipboard.writeText('我收到啦，谢谢你。'); copy.textContent = '已复制，去回复我吧'; }
+              try { await navigator.clipboard.writeText('小朱朱收到啦，谢谢宋宋。'); copy.textContent = '已复制，去回复宋宋吧'; }
               catch { copy.textContent = '请手动复制上面的回复'; }
             });
             panel.appendChild(copy);
