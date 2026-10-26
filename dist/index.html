@@ -34,17 +34,17 @@
 </head>
 <body>
   <main class="wrap">
-    <div class="glow"></div><div class="heart h1">💗</div><div class="heart h2">💞</div><div class="heart h3">✨</div>
-    <section class="card" aria-label="给朱朱的道歉信">
+    <div class="glow"></div><div class="heart h1">🌷</div><div class="heart h2">☀️</div><div class="heart h3">✨</div>
+    <section class="card" aria-label="给朱朱的安慰">
       <div class="sparkles">✦ ˚｡⋆</div>
       <div class="bear reveal">🧸🌷</div>
-      <h1>朱朱不要生气啦</h1>
-      <p class="sub reveal">今天受委屈了吧，来给你一个抱抱～</p>
-      <p class="note reveal">别难过啦，朱朱的心情我懂，<br>不开心的事情先放一放，我陪着你慢慢消化。<br>你值得被温柔对待，也值得一直开心呀 🌷</p>
-      <div class="reveal"><span class="pill">抱抱你</span><span class="pill">陪着你</span><span class="pill">慢慢开心</span></div>
-      <div class="reveal"><button onclick="this.textContent='把坏心情交给我吧 🫂'; this.style.background='linear-gradient(135deg,#f4a261,#ffcf70)'">点这里收下抱抱</button></div>
-      <div class="footer reveal">永远站在朱朱这边 · ♥</div>
-      <div class="tap-hint" id="hint">点击一下，给朱朱一个抱抱</div>
+      <h1>朱朱，别让坏心情困住你</h1>
+      <p class="sub reveal">今天一定很不好受吧，先让自己缓一缓。</p>
+      <p class="note reveal">难过的时候不用急着装作没事，<br>你的感受值得被认真对待。<br>愿这件事慢慢过去，也愿你今晚能轻松一点。🌷</p>
+      <div class="reveal"><span class="pill">先喘口气</span><span class="pill">慢慢来</span><span class="pill">会好起来的</span></div>
+      <div class="reveal"><button onclick="this.textContent='愿你轻松一点 ☀️'; this.style.background='linear-gradient(135deg,#f4a261,#ffcf70)'">点这里收下这份安慰</button></div>
+      <div class="footer reveal">不用马上开心，给自己一点时间 · ✦</div>
+      <div class="tap-hint" id="hint">点击一下，先听见一句安慰</div>
     </section>
   </main>
   <script>
@@ -56,7 +56,7 @@
       if (next < revealItems.length) {
         revealItems[next].classList.add('show');
         next += 1;
-        hint.textContent = next < revealItems.length ? '再点一下，朱朱会收到更多安慰～' : '都出现啦，点击按钮收下抱抱 🫂';
+        hint.textContent = next < revealItems.length ? '再点一下，还有一句想对你说的话～' : '都出现啦，点击按钮收下这份安慰 ☀️';
       }
     });
   </script>
