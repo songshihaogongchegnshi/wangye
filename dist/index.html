@@ -14,6 +14,10 @@
     .card { width:min(100%,420px); padding:38px 26px 30px; border:2px solid rgba(255,111,159,.28); border-radius:32px; text-align:center; background:rgba(255,255,255,.74); box-shadow:0 20px 60px rgba(183,71,117,.18); backdrop-filter:blur(10px); position:relative; z-index:1; }
     .reveal { opacity:0; transform:translateY(20px) scale(.7); pointer-events:none; }
     .reveal.show { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; animation:pop .6s cubic-bezier(.2,1.5,.4,1) both; }
+    .step { display:none; animation:pop .6s cubic-bezier(.2,1.5,.4,1) both; }
+    .step.active { display:block; }
+    .comfort-btn { min-width:190px; }
+    .final-message { margin:20px auto 4px; padding:20px 14px; border-radius:20px; background:#fff7df; color:#8d5d3a; font-size:18px; line-height:1.9; font-weight:700; }
     .sparkles { font-size:24px; letter-spacing:12px; color:var(--gold); margin-bottom:8px; }
     .bear { font-size:72px; line-height:1; margin:4px 0 18px; filter:drop-shadow(0 7px 4px rgba(193,78,115,.16)); }
     h1 { margin:0; font-size:34px; line-height:1.25; letter-spacing:1px; color:var(--pink); text-shadow:2px 2px 0 #fff; }
@@ -35,29 +39,34 @@
 <body>
   <main class="wrap">
     <div class="glow"></div><div class="heart h1">🌷</div><div class="heart h2">☀️</div><div class="heart h3">✨</div>
-    <section class="card" aria-label="给朱朱的安慰">
+    <section class="card" aria-label="宋宋给朱朱的安慰">
       <div class="sparkles">✦ ˚｡⋆</div>
-      <div class="bear reveal">🧸🌷</div>
-      <h1>朱朱，别让坏心情困住你</h1>
-      <p class="sub reveal">今天一定很不好受吧，先让自己缓一缓。</p>
-      <p class="note reveal">难过的时候不用急着装作没事，<br>你的感受值得被认真对待。<br>愿这件事慢慢过去，也愿你今晚能轻松一点。🌷</p>
-      <div class="reveal"><span class="pill">先喘口气</span><span class="pill">慢慢来</span><span class="pill">会好起来的</span></div>
-      <div class="reveal"><button onclick="this.textContent='愿你轻松一点 ☀️'; this.style.background='linear-gradient(135deg,#f4a261,#ffcf70)'">点这里收下这份安慰</button></div>
-      <div class="footer reveal">不用马上开心，给自己一点时间 · ✦</div>
-      <div class="tap-hint" id="hint">点击一下，先听见一句安慰</div>
+      <div class="bear">🧸🌷</div>
+      <h1>今天我们的朱朱是不是难过啦？</h1>
+      <p class="sub">难过的话，宋宋来安慰一下。</p>
+      <p class="note">不用急着装作没事，先让心情慢慢缓下来。<br>我们一步一步来，好吗？</p>
+      <div class="step active"><button class="comfort-btn">🌷 点一下花花</button></div>
+      <div class="step"><p class="note">花花送给朱朱，愿你被温柔对待。</p><button class="comfort-btn">🫂 点一下拥抱</button></div>
+      <div class="step"><p class="note">把不开心先放一放，宋宋陪你看一场小烟花。</p><button class="comfort-btn">🎆 点一下烟花</button></div>
+      <div class="step"><div class="final-message">不要难过啦，朱朱。<br>今天的委屈会慢慢过去，<br>愿你明天醒来时，心里已经轻松一点了。🌷</div></div>
+      <div class="tap-hint" id="hint">点击花花，安慰就开始啦</div>
+      <div class="footer">宋宋的一点点关心 · ✦</div>
     </section>
   </main>
   <script>
-    const revealItems = [...document.querySelectorAll('.reveal')];
+    const steps = [...document.querySelectorAll('.step')];
     const hint = document.getElementById('hint');
-    let next = 0;
-    document.addEventListener('click', (event) => {
-      if (event.target.closest('button')) return;
-      if (next < revealItems.length) {
-        revealItems[next].classList.add('show');
-        next += 1;
-        hint.textContent = next < revealItems.length ? '再点一下，还有一句想对你说的话～' : '都出现啦，点击按钮收下这份安慰 ☀️';
-      }
+    let current = 0;
+    steps.forEach((step, index) => {
+      const button = step.querySelector('button');
+      if (!button) return;
+      button.addEventListener('click', () => {
+        if (index !== current) return;
+        step.classList.remove('active');
+        current += 1;
+        steps[current].classList.add('active');
+        hint.textContent = current === 1 ? '再点一下拥抱，给朱朱一点力量' : current === 2 ? '最后点一下烟花，把坏心情放走' : '安慰送到啦 ☀️';
+      });
     });
   </script>
 </body>
