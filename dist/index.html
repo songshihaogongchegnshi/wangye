@@ -45,7 +45,7 @@
     <div class="glow"></div><div class="heart h1">🌷</div><div class="heart h2">☀️</div><div class="heart h3">✨</div>
     <section class="card" aria-label="宋宋给朱奕瑄小朋友的安慰">
       <div class="sparkles">✦ ˚｡⋆</div>
-      <h1>朱奕瑄小朋友今天是不是难过啦？</h1>
+      <h1 id="storyTitle">朱奕瑄小朋友今天是不是难过啦？</h1>
       <p class="sub">如果难过的话，就让宋宋来安慰你一下。</p>
       <div class="step active"><p class="prompt">朱朱小朋友愿意告诉宋宋吗？</p><button class="comfort-btn">是，我有一点难过</button></div>
       <div class="step"><div class="bear">🫂</div><p class="prompt">不要难过哦，宋宋来安慰你。</p><button class="comfort-btn">收到拥抱啦</button></div>
@@ -59,6 +59,14 @@
   <script>
     const steps = [...document.querySelectorAll('.step')];
     const hint = document.getElementById('hint');
+    const storyTitle = document.getElementById('storyTitle');
+    const titles = [
+      '朱奕瑄小朋友今天是不是难过啦？',
+      '没关系，宋宋来安慰你啦',
+      '朱朱小朋友，请领取安慰礼物',
+      '花花、烟花和礼物都来陪你啦',
+      '不要难过啦，朱朱小朋友！'
+    ];
     let current = 0;
     steps.forEach((step, index) => {
       const button = step.querySelector('button');
@@ -68,6 +76,7 @@
         step.classList.remove('active');
         current += 1;
         steps[current].classList.add('active');
+        storyTitle.textContent = titles[current];
         hint.textContent = ['点击“是”，安慰就开始啦','拥抱已经送到啦，点击继续','请朱朱小朋友领取安慰礼物','花、烟花和礼物都准备好了','安慰礼物送达啦 ☀️'][current];
       });
     });
