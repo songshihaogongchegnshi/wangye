@@ -66,7 +66,7 @@
     .progress-line.done { background:linear-gradient(90deg,#f49ab4,#f5c68b); }
     .progress-dot { background:#fffdfc; border-color:#ddcfd3; color:#b7a0a6; }
     .progress-dot.active { background:#ed7899; border-color:#ed7899; box-shadow:0 0 0 4px rgba(237,120,153,.15); }
-    .progress-dot.done { background:#f5c2cf; border-color:#f5c2cf; color:#fff; }
+    .progress-dot.done { background:#c6a39b; border-color:#c6a39b; color:#fff; box-shadow:none; }
     h1 { color:#d9577d; text-shadow:none; }
     .sub, .prompt { color:#793f56; }
     .note { color:#8f586c; }
@@ -76,11 +76,19 @@
     .backdrop-art { display:none; position:absolute; width:min(92vw,980px); height:auto; opacity:.36; pointer-events:none; }
     .hero-icon { width:88px; height:88px; display:block; margin:0 auto 14px; }
     button { background:linear-gradient(135deg,#e7658b,#db826f); box-shadow:0 8px 18px rgba(191,82,108,.2); }
+    button:hover { filter:brightness(1.06); transform:translateY(-2px); }
+    button:focus-visible { outline:3px solid rgba(217,87,125,.34); outline-offset:4px; }
+    button:active { transform:translateY(0) scale(.98); }
+    .tap-hint { display:none; }
+    .footer { display:none; }
+    .quiet-btn { margin:14px 0 0 12px; padding:8px 4px; color:#9a5c78; background:transparent; border:0; box-shadow:none; font-size:14px; text-decoration:underline; text-underline-offset:3px; }
+    .quiet-btn:hover { background:transparent; color:#793f56; filter:none; transform:none; }
+    .quiet-btn:focus-visible { outline:2px solid rgba(217,87,125,.34); outline-offset:3px; }
     .heart { opacity:.42; }
     @media (min-width:900px) {
-      .wrap { padding:42px; }
-      .card { min-height:570px; display:flex; flex-direction:column; justify-content:center; }
-      .backdrop-art { display:block; }
+      .wrap { padding:24px; }
+      .card { min-height:520px; display:flex; flex-direction:column; justify-content:center; }
+      .backdrop-art { display:none; }
     }
     @media (max-width:599px) {
       .card { padding:30px 22px 28px; }
@@ -91,11 +99,11 @@
 <body>
   <main class="wrap">
     <div class="glow"></div><svg class="backdrop-art" viewBox="0 0 980 520" aria-hidden="true"><circle cx="490" cy="260" r="190" fill="#fff4e9"/><path d="M140 390c70-90 125-92 178 0M662 390c52-92 114-92 178 0" fill="none" stroke="#e9b5b5" stroke-width="3" stroke-linecap="round"/><path d="M210 115l9 22 24 2-18 15 6 23-21-12-21 12 6-23-18-15 24-2zM760 98l7 17 19 2-14 12 4 18-16-9-16 9 5-18-15-12 19-2z" fill="#f0c36e"/><circle cx="318" cy="110" r="7" fill="#e882a3"/><circle cx="672" cy="150" r="5" fill="#e882a3"/></svg><div class="heart h1">✦</div><div class="heart h2">○</div><div class="heart h3">·</div><div class="heart h4">✧</div>
-    <section class="card" aria-label="宋宋给朱奕瑄小朋友的安慰">
+    <section class="card" aria-label="宋宋给朱奕瑄的安慰">
       <div class="sparkles">✦ ˚｡⋆</div>
       <div class="badge">宋宋的安慰小剧场</div>
       <div class="progress" aria-label="安慰进度"><span class="progress-dot active">1</span><span class="progress-line"></span><span class="progress-dot">2</span><span class="progress-line"></span><span class="progress-dot">3</span><span class="progress-line"></span><span class="progress-dot">4</span><span class="progress-line"></span><span class="progress-dot">5</span></div>
-      <h1 id="storyTitle">朱奕瑄小朋友今天是不是难过啦？</h1>
+      <h1 id="storyTitle">朱奕瑄，今天是不是有一点难过？</h1>
       <p class="sub">如果难过，就先留在这里一会儿。</p>
       <div class="mini-note">不急着开心，先让自己被好好安慰。</div>
       <div class="step active"><p class="prompt">今天是不是有一点难过？</p><button class="comfort-btn">是，我想被安慰一下</button></div>
@@ -114,7 +122,7 @@
     const progressDots = [...document.querySelectorAll('.progress-dot')];
     const progressLines = [...document.querySelectorAll('.progress-line')];
     const titles = [
-      '朱奕瑄小朋友今天是不是难过啦？',
+      '朱奕瑄，今天是不是有一点难过？',
       '我在这里，先陪你缓一缓',
       '朱朱，给你准备了一份小礼物',
       '花、烟花，还有一份小小心意',

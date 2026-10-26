@@ -5,7 +5,7 @@
     const progressDots = [...document.querySelectorAll('.progress-dot')];
     const progressLines = [...document.querySelectorAll('.progress-line')];
     const titles = [
-      '朱奕瑄小朋友今天是不是难过啦？',
+      '朱奕瑄，今天是不是有一点难过？',
       '我在这里，先陪你缓一缓',
       '朱朱，给你准备了一份小礼物',
       '花、烟花，还有一份小小心意',
