@@ -56,23 +56,53 @@
     @keyframes core { from{transform:scale(.8);opacity:.7} to{transform:scale(1.25);opacity:1} }
     @keyframes flowerGlow { 50%{transform:scale(1.08) rotate(4deg)} }
     @keyframes giftBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+    /* Refined visual system: fewer effects, clearer hierarchy, roomier desktop composition. */
+    .glow { width:520px; height:520px; background:#ffe8dc; filter:blur(70px); opacity:.38; }
+    .card { width:min(100%,560px); padding:38px 54px 34px; background:#fffdfc; border:1px solid #f0d9dc; box-shadow:0 24px 70px rgba(116,61,76,.13); backdrop-filter:none; }
+    .card::before { display:none; }
+    .sparkles { margin-bottom:10px; color:#c78678; opacity:.8; }
+    .badge { background:#fff4dd; color:#99623b; box-shadow:none; }
+    .progress-line { background:#eadde0; transition:background .35s; }
+    .progress-line.done { background:linear-gradient(90deg,#f49ab4,#f5c68b); }
+    .progress-dot { background:#fffdfc; border-color:#ddcfd3; color:#b7a0a6; }
+    .progress-dot.active { background:#ed7899; border-color:#ed7899; box-shadow:0 0 0 4px rgba(237,120,153,.15); }
+    .progress-dot.done { background:#f5c2cf; border-color:#f5c2cf; color:#fff; }
+    h1 { color:#d9577d; text-shadow:none; }
+    .sub, .prompt { color:#793f56; }
+    .note { color:#8f586c; }
+    .mini-note { color:#9a5c78; }
+    .footer { color:#9a5c78; }
+    .quiet-btn { margin:12px 0 0 8px; padding:11px 18px; color:#9a5c78; background:#fff4f6; border:1px solid #efcbd4; box-shadow:none; font-size:14px; }
+    .backdrop-art { display:none; position:absolute; width:min(92vw,980px); height:auto; opacity:.36; pointer-events:none; }
+    .hero-icon { width:88px; height:88px; display:block; margin:0 auto 14px; }
+    button { background:linear-gradient(135deg,#e7658b,#db826f); box-shadow:0 8px 18px rgba(191,82,108,.2); }
+    .heart { opacity:.42; }
+    @media (min-width:900px) {
+      .wrap { padding:42px; }
+      .card { min-height:570px; display:flex; flex-direction:column; justify-content:center; }
+      .backdrop-art { display:block; }
+    }
+    @media (max-width:599px) {
+      .card { padding:30px 22px 28px; }
+      h1 { font-size:clamp(23px,7.2vw,30px); }
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
-    <div class="glow"></div><div class="heart h1">🌷</div><div class="heart h2">☀️</div><div class="heart h3">✨</div><div class="heart h4">✦</div>
+    <div class="glow"></div><svg class="backdrop-art" viewBox="0 0 980 520" aria-hidden="true"><circle cx="490" cy="260" r="190" fill="#fff4e9"/><path d="M140 390c70-90 125-92 178 0M662 390c52-92 114-92 178 0" fill="none" stroke="#e9b5b5" stroke-width="3" stroke-linecap="round"/><path d="M210 115l9 22 24 2-18 15 6 23-21-12-21 12 6-23-18-15 24-2zM760 98l7 17 19 2-14 12 4 18-16-9-16 9 5-18-15-12 19-2z" fill="#f0c36e"/><circle cx="318" cy="110" r="7" fill="#e882a3"/><circle cx="672" cy="150" r="5" fill="#e882a3"/></svg><div class="heart h1">✦</div><div class="heart h2">○</div><div class="heart h3">·</div><div class="heart h4">✧</div>
     <section class="card" aria-label="宋宋给朱奕瑄小朋友的安慰">
       <div class="sparkles">✦ ˚｡⋆</div>
       <div class="badge">宋宋的安慰小剧场</div>
       <div class="progress" aria-label="安慰进度"><span class="progress-dot active">1</span><span class="progress-line"></span><span class="progress-dot">2</span><span class="progress-line"></span><span class="progress-dot">3</span><span class="progress-line"></span><span class="progress-dot">4</span><span class="progress-line"></span><span class="progress-dot">5</span></div>
       <h1 id="storyTitle">朱奕瑄小朋友今天是不是难过啦？</h1>
-      <p class="sub">如果难过的话，就让宋宋来安慰你一下。</p>
-      <div class="mini-note">一份慢慢打开的、不会越界的朋友式安慰</div>
-      <div class="step active"><p class="prompt">朱朱小朋友愿意告诉宋宋吗？</p><button class="comfort-btn">是，我有一点难过</button></div>
-      <div class="step"><div class="bear">🫂</div><p class="prompt">不要难过哦，宋宋来安慰你。</p><button class="comfort-btn">收到拥抱啦</button></div>
-      <div class="step"><p class="prompt">朱朱小朋友，请领取安慰礼物。</p><button class="comfort-btn">请朱朱小朋友领取安慰礼物</button></div>
-      <div class="step"><div class="gift-row"><svg class="flower-art" viewBox="0 0 100 100" aria-label="鲜艳的花"><defs><linearGradient id="petal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff2f8a"/><stop offset=".55" stop-color="#ff5a40"/><stop offset="1" stop-color="#ffbf38"/></linearGradient></defs><g fill="url(#petal)"><ellipse cx="50" cy="26" rx="15" ry="28"/><ellipse cx="74" cy="40" rx="15" ry="28" transform="rotate(58 74 40)"/><ellipse cx="68" cy="69" rx="15" ry="28" transform="rotate(122 68 69)"/><ellipse cx="32" cy="69" rx="15" ry="28" transform="rotate(-122 32 69)"/><ellipse cx="26" cy="40" rx="15" ry="28" transform="rotate(-58 26 40)"/></g><circle cx="50" cy="50" r="13" fill="#ffe66d"/><circle cx="50" cy="50" r="6" fill="#ff8b22"/></svg><div class="firework-art" aria-label="正在绽放的烟花"><i style="--angle:0deg"></i><i style="--angle:45deg"></i><i style="--angle:90deg"></i><i style="--angle:135deg"></i><i style="--angle:180deg"></i><i style="--angle:225deg"></i><i style="--angle:270deg"></i><i style="--angle:315deg"></i><b class="firework-core"></b></div><div class="gift-art" aria-label="安慰礼物"></div></div><p class="prompt">鲜花、烟花和礼物，都送给今天需要被安慰的朱朱。</p><button class="comfort-btn">打开安慰礼物</button></div>
-      <div class="step"><div class="bear">🧸</div><div class="final-message">不要难过哦，朱朱小朋友。<br>不开心的事情会慢慢过去，<br>宋宋希望你今天可以轻松一点、开心一点。🌷</div></div>
+      <p class="sub">如果难过，就先留在这里一会儿。</p>
+      <div class="mini-note">不急着开心，先让自己被好好安慰。</div>
+      <div class="step active"><p class="prompt">今天是不是有一点难过？</p><button class="comfort-btn">是，我想被安慰一下</button></div>
+      <div class="step"><svg class="hero-icon" viewBox="0 0 100 100" aria-label="温柔的拥抱"><circle cx="50" cy="29" r="15" fill="#f2b19e"/><path d="M28 82c2-25 11-37 22-37s20 12 22 37" fill="#e8899f"/><path d="M28 56C9 53 8 74 30 70M72 56c19-3 20 18-2 14" fill="none" stroke="#d66b89" stroke-width="8" stroke-linecap="round"/></svg><p class="prompt">今天辛苦啦，先收下这份拥抱。</p><button class="comfort-btn">收到这份拥抱</button></div>
+      <div class="step"><p class="prompt">朱朱，给你准备了一份小礼物。<br>希望它能让你心情轻一点。</p><button class="comfort-btn">打开礼物</button></div>
+      <div class="step"><div class="gift-row"><svg class="flower-art" viewBox="0 0 100 100" aria-label="鲜艳的花"><defs><linearGradient id="petal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff2f8a"/><stop offset=".55" stop-color="#ff5a40"/><stop offset="1" stop-color="#ffbf38"/></linearGradient></defs><g fill="url(#petal)"><ellipse cx="50" cy="26" rx="15" ry="28"/><ellipse cx="74" cy="40" rx="15" ry="28" transform="rotate(58 74 40)"/><ellipse cx="68" cy="69" rx="15" ry="28" transform="rotate(122 68 69)"/><ellipse cx="32" cy="69" rx="15" ry="28" transform="rotate(-122 32 69)"/><ellipse cx="26" cy="40" rx="15" ry="28" transform="rotate(-58 26 40)"/></g><circle cx="50" cy="50" r="13" fill="#ffe66d"/><circle cx="50" cy="50" r="6" fill="#ff8b22"/></svg><div class="firework-art" aria-label="正在绽放的烟花"><i style="--angle:0deg"></i><i style="--angle:45deg"></i><i style="--angle:90deg"></i><i style="--angle:135deg"></i><i style="--angle:180deg"></i><i style="--angle:225deg"></i><i style="--angle:270deg"></i><i style="--angle:315deg"></i><b class="firework-core"></b></div><div class="gift-art" aria-label="安慰礼物"></div></div><p class="prompt">愿这些亮晶晶的东西，替你把心情照亮一点。</p><button class="comfort-btn">继续收下</button></div>
+      <div class="step"><svg class="hero-icon" viewBox="0 0 100 100" aria-label="小熊插画"><circle cx="31" cy="28" r="13" fill="#d89b6e"/><circle cx="69" cy="28" r="13" fill="#d89b6e"/><circle cx="50" cy="45" r="28" fill="#e7b17c"/><ellipse cx="50" cy="74" rx="28" ry="18" fill="#e7b17c"/><circle cx="41" cy="45" r="3" fill="#704d4b"/><circle cx="59" cy="45" r="3" fill="#704d4b"/><path d="M45 55q5 5 10 0" fill="none" stroke="#704d4b" stroke-width="3" stroke-linecap="round"/></svg><div class="final-message">不急着开心，先让自己被好好安慰。<br>难过会过去，慢慢来就好。<br>今天辛苦啦，朱朱。</div><button class="comfort-btn" id="received">我收到啦</button><button class="quiet-btn" id="restart">再看一遍</button></div>
       <div class="tap-hint" id="hint">点击“是”，安慰就开始啦</div>
       <div class="footer">宋宋的一点点关心 · ✦</div>
     </section>
@@ -82,12 +112,13 @@
     const hint = document.getElementById('hint');
     const storyTitle = document.getElementById('storyTitle');
     const progressDots = [...document.querySelectorAll('.progress-dot')];
+    const progressLines = [...document.querySelectorAll('.progress-line')];
     const titles = [
       '朱奕瑄小朋友今天是不是难过啦？',
-      '没关系，宋宋来安慰你啦',
-      '朱朱小朋友，请领取安慰礼物',
-      '花花、烟花和礼物都来陪你啦',
-      '朱朱小朋友，不要难过啦！'
+      '我在这里，先陪你缓一缓',
+      '朱朱，给你准备了一份小礼物',
+      '花、烟花，还有一份小小心意',
+      '朱朱，今天也要对自己温柔一点'
     ];
     let current = 0;
     steps.forEach((step, index) => {
@@ -95,14 +126,23 @@
       if (!button) return;
       button.addEventListener('click', () => {
         if (index !== current) return;
+        if (index === steps.length - 1) {
+          button.textContent = '收到就好，慢慢来';
+          hint.textContent = '这份安慰一直在这里';
+          return;
+        }
         step.classList.remove('active');
         current += 1;
         steps[current].classList.add('active');
         storyTitle.textContent = titles[current];
+        progressDots[current - 1].classList.remove('active');
+        progressDots[current - 1].classList.add('done');
         progressDots[current].classList.add('active');
-        hint.textContent = ['点击“是”，安慰就开始啦','拥抱已经送到啦，点击继续','请朱朱小朋友领取安慰礼物','花、烟花和礼物都准备好了','安慰礼物送达啦 ☀️'][current];
+        progressLines[current - 1].classList.add('done');
+        hint.textContent = ['点击“是”，安慰就开始啦','拥抱已经送到啦，点击继续','打开礼物，看看里面有什么','花、烟花和礼物都准备好了','安慰送到了，愿你轻松一点'][current];
       });
     });
+    document.getElementById('restart').addEventListener('click', () => window.location.reload());
   </script>
 </body>
 </html>
