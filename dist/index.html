@@ -152,6 +152,9 @@
     .gift-pixel { width:118px; height:92px; margin:12px auto 22px; position:relative; background:#e775a2; border:4px solid #684d70; box-shadow:7px 7px 0 #684d70; animation:giftPixel 1.8s steps(4,end) infinite; }
     .gift-pixel::before { content:""; position:absolute; left:46px; top:0; width:18px; height:88px; background:#ffd86d; border-left:3px solid #684d70; border-right:3px solid #684d70; }
     .gift-pixel::after { content:""; position:absolute; left:29px; top:-25px; width:22px; height:22px; border:6px solid #ffd86d; box-shadow:29px 0 0 -1px #ffd86d; transform:rotate(-8deg); }
+    .reply-prompt { margin:18px auto 0; padding:12px 14px; max-width:360px; border:3px solid #684d70; background:#fff1d8; color:#654766; box-shadow:4px 4px 0 #684d70; font-size:14px; line-height:1.7; }
+    .reply-prompt strong { color:#d9577d; }
+    .copy-reply { margin:12px 0 0; padding:8px 14px; font-size:13px; background:#ffd86d; color:#684d70; box-shadow:3px 3px 0 #684d70; }
     @keyframes pixelFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
     @keyframes pixelRing { from{opacity:1;transform:scale(.72)} to{opacity:0;transform:scale(1.2)} }
     @keyframes confettiFall { 0%{transform:translateY(-18px)} 100%{transform:translateY(18px)} }
@@ -214,8 +217,24 @@
     function advance(index, button) {
         if (index !== current) return;
         if (index === steps.length - 1) {
-          button.textContent = '收到就好，慢慢来';
-          hint.textContent = '这份安慰一直在这里';
+          button.textContent = '看完请回复我';
+          hint.textContent = '看完后记得回我一句哦';
+          if (!document.getElementById('replyPrompt')) {
+            const panel = document.createElement('div');
+            panel.id = 'replyPrompt';
+            panel.className = 'reply-prompt';
+            panel.innerHTML = '看完这个小礼物后，请回复宋宋一句：<br><strong>“我收到啦，谢谢你。”</strong>';
+            const copy = document.createElement('button');
+            copy.type = 'button';
+            copy.className = 'copy-reply';
+            copy.textContent = '复制这句回复';
+            copy.addEventListener('click', async () => {
+              try { await navigator.clipboard.writeText('我收到啦，谢谢你。'); copy.textContent = '已复制，去回复我吧'; }
+              catch { copy.textContent = '请手动复制上面的回复'; }
+            });
+            panel.appendChild(copy);
+            button.insertAdjacentElement('afterend', panel);
+          }
           return;
         }
         steps[index].classList.remove('active');
