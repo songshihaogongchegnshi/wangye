@@ -15,10 +15,6 @@
     .card::before { content:""; position:absolute; inset:8px; border:1px solid rgba(255,184,70,.2); border-radius:25px; pointer-events:none; }
     .badge { display:inline-flex; align-items:center; gap:7px; padding:7px 13px; border-radius:999px; background:linear-gradient(135deg,#fff1b9,#fff8df); color:#b77b2b; font-size:12px; font-weight:800; letter-spacing:1px; box-shadow:0 5px 14px rgba(255,185,70,.14); }
     .badge::before { content:"✦"; color:#ff9e43; font-size:15px; }
-    .progress { display:flex; align-items:center; justify-content:center; gap:0; margin:18px auto 20px; width:min(100%,285px); }
-    .progress-line { height:2px; flex:1; background:#f4dbe4; }
-    .progress-dot { width:22px; height:22px; display:grid; place-items:center; border-radius:50%; background:#fff; border:2px solid #f3cbd8; color:#d59bad; font-size:11px; font-weight:800; transition:.35s; }
-    .progress-dot.active { color:#fff; border-color:#ff7da8; background:linear-gradient(135deg,#ff70a0,#ff9d79); box-shadow:0 0 0 5px rgba(255,111,159,.12); transform:scale(1.08); }
     .mini-note { margin:-3px auto 17px; color:#c27c95; font-size:12px; letter-spacing:.5px; }
     .reveal { opacity:0; transform:translateY(20px) scale(.7); pointer-events:none; }
     .reveal.show { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; animation:pop .6s cubic-bezier(.2,1.5,.4,1) both; }
@@ -62,11 +58,6 @@
     .card::before { display:none; }
     .sparkles { margin-bottom:10px; color:#c78678; opacity:.8; }
     .badge { background:#fff4dd; color:#99623b; box-shadow:none; }
-    .progress-line { background:#eadde0; transition:background .35s; }
-    .progress-line.done { background:linear-gradient(90deg,#f49ab4,#f5c68b); }
-    .progress-dot { background:#fffdfc; border-color:#ddcfd3; color:#b7a0a6; }
-    .progress-dot.active { background:#ed7899; border-color:#ed7899; box-shadow:0 0 0 4px rgba(237,120,153,.15); }
-    .progress-dot.done { background:#c6a39b; border-color:#c6a39b; color:#fff; box-shadow:none; }
     h1 { color:#d9577d; text-shadow:none; }
     .sub, .prompt { color:#793f56; }
     .note { color:#8f586c; }
@@ -102,7 +93,6 @@
     <section class="card" aria-label="宋宋给朱奕瑄的安慰">
       <div class="sparkles">✦ ˚｡⋆</div>
       <div class="badge">宋宋的安慰小剧场</div>
-      <div class="progress" aria-label="安慰进度"><span class="progress-dot active">1</span><span class="progress-line"></span><span class="progress-dot">2</span><span class="progress-line"></span><span class="progress-dot">3</span><span class="progress-line"></span><span class="progress-dot">4</span><span class="progress-line"></span><span class="progress-dot">5</span></div>
       <h1 id="storyTitle">朱奕瑄，今天是不是有一点难过？</h1>
       <p class="sub">如果难过，就先留在这里一会儿。</p>
       <div class="mini-note">不急着开心，先让自己被好好安慰。</div>
@@ -119,8 +109,6 @@
     const steps = [...document.querySelectorAll('.step')];
     const hint = document.getElementById('hint');
     const storyTitle = document.getElementById('storyTitle');
-    const progressDots = [...document.querySelectorAll('.progress-dot')];
-    const progressLines = [...document.querySelectorAll('.progress-line')];
     const titles = [
       '朱奕瑄，今天是不是有一点难过？',
       '我在这里，先陪你缓一缓',
@@ -143,10 +131,6 @@
         current += 1;
         steps[current].classList.add('active');
         storyTitle.textContent = titles[current];
-        progressDots[current - 1].classList.remove('active');
-        progressDots[current - 1].classList.add('done');
-        progressDots[current].classList.add('active');
-        progressLines[current - 1].classList.add('done');
         hint.textContent = ['点击“是”，安慰就开始啦','拥抱已经送到啦，点击继续','打开礼物，看看里面有什么','花、烟花和礼物都准备好了','安慰送到了，愿你轻松一点'][current];
       });
     });
