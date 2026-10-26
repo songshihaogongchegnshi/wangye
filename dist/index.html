@@ -145,7 +145,7 @@
     .comfort-btn { overflow:visible; }
     .comfort-btn::after { content:""; position:absolute; inset:-7px; border:2px solid #ffd86d; opacity:0; transform:scale(.72); pointer-events:none; }
     .comfort-btn:active::after { animation:pixelRing .45s steps(3,end) both; }
-    .step:has(.final-message)::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.9; background:linear-gradient(90deg,#ffd86d 0 6px,transparent 6px 26px,#e775a2 26px 32px,transparent 32px 52px,#8ab587 52px 58px,transparent 58px 78px,#9a7bb0 78px 84px,transparent 84px 100px); background-size:100px 12px; animation:confettiFall 2.6s steps(6,end) infinite; }
+    .step:has(.final-message)::before { content:""; position:absolute; left:12%; top:14%; width:6px; height:6px; pointer-events:none; opacity:.85; background:#ffd86d; box-shadow:180px 24px 0 #e775a2,360px 4px 0 #8ab587,540px 42px 0 #9a7bb0,720px 18px 0 #ffd86d,90px 280px 0 #e775a2,430px 250px 0 #8ab587,680px 290px 0 #9a7bb0; animation:confettiFloat 2.6s steps(6,end) infinite; }
     .step:has(.final-message) { position:relative; }
     .celebration-stage::before { content:"✦  ·  ✧  ·  ✦  ·  ✧"; position:absolute; inset:8% 0 auto; z-index:31; color:#ffe275; font-size:20px; letter-spacing:18px; animation:starDrift 2.2s steps(5,end) infinite; pointer-events:none; }
     .celebration-stage::after { content:"❀  ❁  ❀  ❁"; position:absolute; left:8%; right:8%; bottom:2%; z-index:31; color:#ef718d; font-size:20px; letter-spacing:20px; animation:petalFloat 3s steps(6,end) infinite; pointer-events:none; }
@@ -155,6 +155,7 @@
     @keyframes pixelFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
     @keyframes pixelRing { from{opacity:1;transform:scale(.72)} to{opacity:0;transform:scale(1.2)} }
     @keyframes confettiFall { 0%{transform:translateY(-18px)} 100%{transform:translateY(18px)} }
+    @keyframes confettiFloat { 0%,100%{transform:translateY(-5px)} 50%{transform:translateY(8px)} }
     @keyframes starDrift { 0%,100%{transform:translateX(-8px);opacity:.5} 50%{transform:translateX(8px);opacity:1} }
     @keyframes petalFloat { 0%,100%{transform:translateY(4px);opacity:.65} 50%{transform:translateY(-8px);opacity:1} }
     @keyframes giftPixel { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
