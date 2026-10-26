@@ -131,6 +131,7 @@
     .prompt::before { content:"▸ "; color:#c55f8d; }
     .hero-icon { width:150px; height:150px; image-rendering:pixelated; filter:drop-shadow(7px 7px 0 rgba(108,75,115,.18)); }
     button { border:3px solid #684d70; border-radius:0; background:#e775a2; color:#fff; font-family:inherit; font-size:17px; letter-spacing:.5px; box-shadow:5px 5px 0 #684d70; }
+    .comfort-btn, .quiet-btn { position:relative; z-index:40; touch-action:manipulation; -webkit-tap-highlight-color:rgba(104,77,112,.18); }
     button:hover { filter:none; transform:translate(-2px,-2px); box-shadow:7px 7px 0 #684d70; }
     button:active { transform:translate(3px,3px); box-shadow:2px 2px 0 #684d70; }
     .quiet-btn { border:0; box-shadow:none; color:#684d70; background:transparent; text-decoration:underline; }
@@ -211,6 +212,16 @@
         trigger(event);
       });
     });
+    const handleTap = (event) => {
+      const button = event.target && event.target.closest ? event.target.closest('.step button') : null;
+      if (!button) return;
+      const step = button.closest('.step');
+      const index = steps.indexOf(step);
+      if (index >= 0) advance(index, button);
+    };
+    document.addEventListener('pointerup', handleTap, true);
+    document.addEventListener('touchend', handleTap, true);
+    document.addEventListener('click', handleTap, true);
     document.getElementById('restart').addEventListener('click', () => window.location.reload());
   </script>
 </body>
