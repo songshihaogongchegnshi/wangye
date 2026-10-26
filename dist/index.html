@@ -165,6 +165,20 @@
     .card.final-mode .final-message { margin:8px auto 0; padding:12px 14px; font-size:16px; line-height:1.6; }
     .card.final-mode .reply-prompt { margin-top:10px; padding:8px 12px; font-size:13px; line-height:1.45; }
     .card.final-mode .copy-reply { margin-top:8px; padding:6px 12px; }
+    .side-decor { position:absolute; top:50%; width:180px; height:190px; z-index:2; opacity:0; pointer-events:none; transform:translateY(-35%); transition:opacity .35s ease; }
+    .card.final-mode ~ .side-decor { opacity:1; }
+    .side-left { left:7%; }
+    .side-right { right:7%; }
+    .decor-flower { position:absolute; width:24px; height:24px; background:#e775a2; box-shadow:-10px 0 0 #f2879a,10px 0 0 #f2879a,0 -10px 0 #ef718d,0 10px 0 #e85f86; }
+    .decor-flower::before { content:""; position:absolute; left:8px; top:8px; width:8px; height:8px; background:#ffd86d; }
+    .decor-flower::after { content:""; position:absolute; left:10px; top:34px; width:5px; height:72px; background:#79a77d; box-shadow:-20px 34px 0 -1px #8ab587,20px 46px 0 -1px #6e9e76; }
+    .flower-a { left:48px; top:35px; }
+    .flower-b { left:14px; top:82px; transform:scale(.75); background:#f2879a; }
+    .flower-c { left:94px; top:82px; transform:scale(.78); background:#e85f86; }
+    .decor-heart { position:absolute; right:38px; top:44px; width:18px; height:18px; background:#e775a2; box-shadow:18px 0 0 #e775a2,9px 9px 0 #e775a2,9px 18px 0 #e775a2; transform:rotate(45deg); }
+    .decor-heart::after { content:""; position:absolute; left:-20px; top:72px; width:8px; height:8px; background:#ffd86d; box-shadow:30px 18px 0 #9a7bb0,54px -12px 0 #8ab587; }
+    .decor-star { position:absolute; right:64px; top:116px; color:#ffd86d; font-size:38px; text-shadow:4px 4px 0 #684d70; }
+    @media (max-width:699px) { .side-decor { display:none; } }
     @keyframes pixelFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
     @keyframes pixelRing { from{opacity:1;transform:scale(.72)} to{opacity:0;transform:scale(1.2)} }
     @keyframes confettiFall { 0%{transform:translateY(-18px)} 100%{transform:translateY(18px)} }
@@ -200,6 +214,8 @@
       <div class="footer">宋宋的一点点关心 · ✦</div>
       <div class="pixel-progress" aria-label="安慰进度"><i class="active"></i><i></i><i></i><i></i><i></i></div>
     </section>
+    <div class="side-decor side-left" aria-hidden="true"><span class="decor-flower flower-a"></span><span class="decor-flower flower-b"></span><span class="decor-flower flower-c"></span></div>
+    <div class="side-decor side-right" aria-hidden="true"><span class="decor-heart"></span><span class="decor-star">✦</span></div>
   </main>
   <script>
     const steps = [...document.querySelectorAll('.step')];
